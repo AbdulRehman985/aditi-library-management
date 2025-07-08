@@ -20,8 +20,8 @@ export default function PaymentsPage() {
       try {
         const data = await api.getPayments();
         setPayments(data);
-      } catch (error) {
-        console.error('Failed to load payments:', error);
+      } catch {
+        // Failed to load payments
       } finally {
         setLoading('payments', false);
       }
@@ -33,17 +33,17 @@ export default function PaymentsPage() {
   // Calculate statistics
   const today = new Date().toISOString().split('T')[0];
   const thisMonth = new Date().toISOString().slice(0, 7); // YYYY-MM format
-  
+
   const stats = {
     total: payments.reduce((sum, p) => sum + p.amount, 0),
     todayTotal: payments
-      .filter(p => p.date === today && p.status === 'Completed')
+      .filter((p) => p.date === today && p.status === 'Completed')
       .reduce((sum, p) => sum + p.amount, 0),
     monthlyTotal: payments
-      .filter(p => p.date.startsWith(thisMonth) && p.status === 'Completed')
+      .filter((p) => p.date.startsWith(thisMonth) && p.status === 'Completed')
       .reduce((sum, p) => sum + p.amount, 0),
-    completedCount: payments.filter(p => p.status === 'Completed').length,
-    pendingCount: payments.filter(p => p.status === 'Pending').length,
+    completedCount: payments.filter((p) => p.status === 'Completed').length,
+    pendingCount: payments.filter((p) => p.status === 'Pending').length,
   };
 
   const summaryCards = [
@@ -56,7 +56,7 @@ export default function PaymentsPage() {
       bgColor: 'bg-green-50',
     },
     {
-      title: 'Today\'s Collection',
+      title: "Today's Collection",
       value: `₹${stats.todayTotal.toLocaleString()}`,
       icon: Calendar,
       description: new Date().toLocaleDateString(),
@@ -83,14 +83,12 @@ export default function PaymentsPage() {
 
   return (
     <Layout>
-      <div className="p-6 space-y-6">
+      <div className="space-y-6 p-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+        <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Payments</h1>
-            <p className="text-gray-600">
-              Track fee payments and generate receipts
-            </p>
+            <p className="text-gray-600">Track fee payments and generate receipts</p>
           </div>
           <div className="flex space-x-3">
             <Button variant="outline">
@@ -107,15 +105,15 @@ export default function PaymentsPage() {
         {/* Summary Cards */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {summaryCards.map((card, index) => (
-            <Card key={index} className="shadow-sm hover:shadow-md transition-shadow">
+            <Card key={index} className="shadow-sm transition-shadow hover:shadow-md">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-600">{card.title}</p>
                     <p className="text-2xl font-bold text-gray-900">{card.value}</p>
-                    <p className="text-xs text-gray-500 mt-1">{card.description}</p>
+                    <p className="mt-1 text-xs text-gray-500">{card.description}</p>
                   </div>
-                  <div className={`p-3 rounded-full ${card.bgColor}`}>
+                  <div className={`rounded-full p-3 ${card.bgColor}`}>
                     <card.icon className={`h-6 w-6 ${card.color}`} />
                   </div>
                 </div>
@@ -134,14 +132,16 @@ export default function PaymentsPage() {
             <CardContent>
               <div className="space-y-4">
                 {['UPI', 'Cash', 'Card', 'Bank Transfer'].map((method) => {
-                  const methodPayments = payments.filter(p => p.method === method && p.status === 'Completed');
+                  const methodPayments = payments.filter(
+                    (p) => p.method === method && p.status === 'Completed'
+                  );
                   const amount = methodPayments.reduce((sum, p) => sum + p.amount, 0);
                   const percentage = stats.total > 0 ? (amount / stats.total) * 100 : 0;
-                  
+
                   return (
                     <div key={method} className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                        <div className="h-3 w-3 rounded-full bg-blue-500"></div>
                         <span className="font-medium">{method}</span>
                       </div>
                       <div className="text-right">
@@ -165,11 +165,11 @@ export default function PaymentsPage() {
                 {payments.slice(0, 5).map((payment) => (
                   <div key={payment.id} className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-sm">{payment.studentName}</p>
+                      <p className="text-sm font-medium">{payment.studentName}</p>
                       <p className="text-xs text-gray-500">{payment.receiptNo}</p>
                     </div>
                     <div className="text-right">
-                      <p className="font-semibold text-sm">₹{payment.amount}</p>
+                      <p className="text-sm font-semibold">₹{payment.amount}</p>
                       <p className="text-xs text-gray-500">{payment.method}</p>
                     </div>
                   </div>
@@ -183,14 +183,12 @@ export default function PaymentsPage() {
         <Card>
           <CardHeader>
             <CardTitle>Payment History</CardTitle>
-            <CardDescription>
-              Complete record of all fee payments and transactions
-            </CardDescription>
+            <CardDescription>Complete record of all fee payments and transactions</CardDescription>
           </CardHeader>
           <CardContent>
             {loading.payments ? (
               <div className="flex items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
                 <span className="ml-2 text-gray-600">Loading payments...</span>
               </div>
             ) : (
@@ -201,4 +199,4 @@ export default function PaymentsPage() {
       </div>
     </Layout>
   );
-} 
+}

@@ -33,8 +33,8 @@ export default function NotificationsPage() {
         // Update unread count
         const unreadCount = data.filter((n) => !n.isRead).length;
         setUnreadNotifications(unreadCount);
-      } catch (error) {
-        console.error('Failed to load notifications:', error);
+      } catch {
+        // Failed to load notifications
       } finally {
         setLoading('notifications', false);
       }
@@ -55,8 +55,8 @@ export default function NotificationsPage() {
       // Update unread count
       const newUnreadCount = notifications.filter((n) => !n.isRead && n.id !== id).length;
       setUnreadNotifications(newUnreadCount);
-    } catch (error) {
-      console.error('Failed to mark notification as read:', error);
+    } catch {
+      // Failed to mark notification as read
     }
   };
 
@@ -69,8 +69,8 @@ export default function NotificationsPage() {
       // Update local state
       setNotifications((prev) => prev.map((notification) => ({ ...notification, isRead: true })));
       setUnreadNotifications(0);
-    } catch (error) {
-      console.error('Failed to mark all notifications as read:', error);
+    } catch {
+      // Failed to mark all notifications as read
     }
   };
 

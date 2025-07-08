@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, Search, Filter, MoreHorizontal, Edit, Eye } from 'lucide-react';
+import { ChevronDown, ChevronUp, Search, MoreHorizontal, Edit, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -46,28 +46,29 @@ export default function StudentTable({ students, onUpdateFeeStatus }: StudentTab
   // Filter and sort students
   const filteredAndSortedStudents = students
     .filter((student) => {
-      const matchesSearch = student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          student.phone.includes(searchTerm);
+      const matchesSearch =
+        student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        student.phone.includes(searchTerm);
       const matchesShift = shiftFilter === 'all' || student.shift === shiftFilter;
       const matchesFeeStatus = feeStatusFilter === 'all' || student.feeStatus === feeStatusFilter;
-      
+
       return matchesSearch && matchesShift && matchesFeeStatus;
     })
     .sort((a, b) => {
       let aValue = a[sortField];
       let bValue = b[sortField];
-      
+
       if (sortField === 'admissionDate') {
         aValue = new Date(a.admissionDate).getTime();
         bValue = new Date(b.admissionDate).getTime();
       }
-      
+
       if (typeof aValue === 'string' && typeof bValue === 'string') {
         aValue = aValue.toLowerCase();
         bValue = bValue.toLowerCase();
       }
-      
+
       if (sortDirection === 'asc') {
         return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
       } else {
@@ -87,9 +88,17 @@ export default function StudentTable({ students, onUpdateFeeStatus }: StudentTab
   const getFeeStatusBadge = (status: Student['feeStatus']) => {
     switch (status) {
       case 'Paid':
-        return <Badge variant="default" className="bg-green-100 text-green-800 hover:bg-green-100">Paid</Badge>;
+        return (
+          <Badge variant="default" className="bg-green-100 text-green-800 hover:bg-green-100">
+            Paid
+          </Badge>
+        );
       case 'Due':
-        return <Badge variant="secondary" className="bg-amber-100 text-amber-800 hover:bg-amber-100">Due</Badge>;
+        return (
+          <Badge variant="secondary" className="bg-amber-100 text-amber-800 hover:bg-amber-100">
+            Due
+          </Badge>
+        );
       case 'Overdue':
         return <Badge variant="destructive">Overdue</Badge>;
       default:
@@ -101,9 +110,12 @@ export default function StudentTable({ students, onUpdateFeeStatus }: StudentTab
     <TableHead className="cursor-pointer select-none" onClick={() => handleSort(field)}>
       <div className="flex items-center space-x-1">
         <span>{children}</span>
-        {sortField === field && (
-          sortDirection === 'asc' ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />
-        )}
+        {sortField === field &&
+          (sortDirection === 'asc' ? (
+            <ChevronUp className="h-4 w-4" />
+          ) : (
+            <ChevronDown className="h-4 w-4" />
+          ))}
       </div>
     </TableHead>
   );
@@ -111,9 +123,9 @@ export default function StudentTable({ students, onUpdateFeeStatus }: StudentTab
   return (
     <div className="space-y-4">
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
           <Input
             placeholder="Search students..."
             value={searchTerm}
@@ -146,7 +158,7 @@ export default function StudentTable({ students, onUpdateFeeStatus }: StudentTab
       </div>
 
       {/* Table */}
-      <div className="border rounded-lg overflow-hidden">
+      <div className="overflow-hidden rounded-lg border">
         <Table>
           <TableHeader>
             <TableRow>
@@ -163,7 +175,7 @@ export default function StudentTable({ students, onUpdateFeeStatus }: StudentTab
           <TableBody>
             {filteredAndSortedStudents.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={8} className="text-center py-8 text-gray-500">
+                <TableCell colSpan={8} className="py-8 text-center text-gray-500">
                   No students found matching your criteria.
                 </TableCell>
               </TableRow>
@@ -253,4 +265,4 @@ export default function StudentTable({ students, onUpdateFeeStatus }: StudentTab
       </div>
     </div>
   );
-} 
+}

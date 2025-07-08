@@ -12,7 +12,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { sidebarOpen: storeSidebarOpen, setSidebarOpen: setStoreSidebarOpen } = useAppStore();
+
 
   const handleMenuClick = () => {
     setSidebarOpen(true);

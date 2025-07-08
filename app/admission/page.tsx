@@ -34,6 +34,17 @@ interface FormErrors {
   feeAmount?: string;
 }
 
+interface AdmissionResult {
+  success: boolean;
+  admissionId: string;
+  student: {
+    id: string;
+    name: string;
+    shift: string;
+    feeAmount: number;
+  };
+}
+
 export default function AdmissionPage() {
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
@@ -46,7 +57,7 @@ export default function AdmissionPage() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [admissionResult, setAdmissionResult] = useState<any>(null);
+  const [admissionResult, setAdmissionResult] = useState<AdmissionResult | null>(null);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -102,8 +113,7 @@ export default function AdmissionPage() {
         setSuccess(true);
         setAdmissionResult(result);
       }
-    } catch (error) {
-      console.error('Admission submission failed:', error);
+    } catch {
       setErrors({ name: 'Admission submission failed. Please try again.' });
     } finally {
       setLoading(false);

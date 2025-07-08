@@ -1,25 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-  TrendingUp,
-  TrendingDown,
-  Users,
-  UserPlus,
-  UserMinus,
-  BarChart3,
-  Calendar,
-  Target,
-  Eye,
-  ArrowUpRight,
-  ArrowDownRight,
-} from 'lucide-react';
+import { TrendingUp, Users, UserPlus, UserMinus, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Layout from '@/components/Layout';
-import { useAppStore } from '@/utils/store';
 import { api } from '@/utils/api';
 
 interface EnrollmentAnalytics {
@@ -65,25 +52,21 @@ interface EnrollmentAnalytics {
 }
 
 export default function AnalyticsPage() {
-  const { setLoading } = useAppStore();
   const [analytics, setAnalytics] = useState<EnrollmentAnalytics | null>(null);
   const [activeTab, setActiveTab] = useState('overview');
 
   useEffect(() => {
     const loadAnalytics = async () => {
-      setLoading('analytics', true);
       try {
         const data = await api.getEnrollmentAnalytics();
         setAnalytics(data);
-      } catch (error) {
-        console.error('Failed to load analytics:', error);
-      } finally {
-        setLoading('analytics', false);
+      } catch {
+        // Analytics loading failed - data will remain null
       }
     };
 
     loadAnalytics();
-  }, [setLoading]);
+  }, []);
 
   if (!analytics) {
     return (

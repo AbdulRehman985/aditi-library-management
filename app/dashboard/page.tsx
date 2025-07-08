@@ -26,7 +26,7 @@ import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 import { useAppStore } from '@/utils/store';
 import { api } from '@/utils/api';
-import { mockStats, mockStudents, mockPayments, mockNotifications } from '@/utils/mockData';
+import { mockStats, mockStudents, mockPayments } from '@/utils/mockData';
 
 interface DashboardStats {
   totalStudents: number;
@@ -42,10 +42,10 @@ interface DashboardStats {
 }
 
 export default function DashboardPage() {
-  const { user, setLoading, loading } = useAppStore();
+  const { user, setLoading } = useAppStore();
   const [stats, setStats] = useState<DashboardStats>(mockStats);
-  const [recentPayments, setRecentPayments] = useState(mockPayments.slice(0, 3));
-  const [overdueStudents, setOverdueStudents] = useState(
+  const [recentPayments] = useState(mockPayments.slice(0, 3));
+  const [overdueStudents] = useState(
     mockStudents.filter((s) => s.feeStatus === 'Overdue').slice(0, 3)
   );
 
@@ -55,8 +55,8 @@ export default function DashboardPage() {
       try {
         const [statsData] = await Promise.all([api.getStats()]);
         setStats(statsData);
-      } catch (error) {
-        console.error('Failed to load dashboard data:', error);
+      } catch {
+        // Dashboard data loading failed
       } finally {
         setLoading('dashboard', false);
       }
@@ -161,7 +161,7 @@ export default function DashboardPage() {
             <h1 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-4xl font-bold text-transparent">
               Welcome back, {user?.name}!
             </h1>
-            <p className="text-lg text-gray-600">Here's what's happening at Aditi Library today.</p>
+            <p className="text-lg text-gray-600">Here&apos;s what&apos;s happening at Aditi Library today.</p>
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <Calendar className="h-4 w-4" />
               {new Date().toLocaleDateString('en-US', {
@@ -185,16 +185,16 @@ export default function DashboardPage() {
 
         {/* Enhanced Summary Cards */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-7">
-          {summaryCards.map((card, index) => (
+          {summaryCards.map((card, cardIndex) => (
             <Card
-              key={index}
+              key={cardIndex}
               className={`group relative overflow-hidden border-2 ${card.borderColor} bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
             >
               <CardContent className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                    <p className="text-sm font-medium text-gray-600">{card.title}</p>
+                      <p className="text-sm font-medium text-gray-600">{card.title}</p>
                       <div
                         className={`flex items-center gap-1 text-xs ${card.trendUp ? 'text-green-600' : 'text-red-600'}`}
                       >
@@ -256,7 +256,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {recentPayments.map((payment, index) => (
+                {recentPayments.map((payment) => (
                   <div
                     key={payment.id}
                     className="group flex items-center justify-between rounded-xl border-0 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
@@ -306,7 +306,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {overdueStudents.map((student, index) => (
+                {overdueStudents.map((student) => (
                   <div
                     key={student.id}
                     className="flex items-center justify-between rounded-xl border border-red-100 bg-white p-4 shadow-sm"
@@ -315,9 +315,9 @@ export default function DashboardPage() {
                       <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-100">
                         <XCircle className="h-4 w-4 text-red-600" />
                       </div>
-                    <div>
-                      <p className="font-medium text-gray-900">{student.name}</p>
-                      <p className="text-sm text-gray-500">{student.shift} Shift</p>
+                      <div>
+                        <p className="font-medium text-gray-900">{student.name}</p>
+                        <p className="text-sm text-gray-500">{student.shift} Shift</p>
                       </div>
                     </div>
                     <div className="text-right">
@@ -338,7 +338,7 @@ export default function DashboardPage() {
                       <MessageSquare className="mr-1 h-3 w-3" />
                       Send Notice
                     </Link>
-                </Button>
+                  </Button>
                 </div>
               </div>
             </CardContent>

@@ -10,10 +10,9 @@ import {
   Bell,
   UserPlus,
   Receipt,
-  X,
   BarChart3,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
 const navigation = [

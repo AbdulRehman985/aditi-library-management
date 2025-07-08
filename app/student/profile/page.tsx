@@ -13,7 +13,6 @@ import {
   LogOut,
   BookOpen,
   Calendar,
-  Receipt,
   AlertCircle,
   CheckCircle,
   Edit3,
@@ -221,7 +220,7 @@ export default function StudentProfilePage() {
                     <p className="mt-1 text-gray-900">{studentData.name}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-700">Father's Name</label>
+                    <label className="text-sm font-medium text-gray-700">Father&apos;s Name</label>
                     <p className="mt-1 text-gray-900">{studentData.fatherName}</p>
                   </div>
                   <div>

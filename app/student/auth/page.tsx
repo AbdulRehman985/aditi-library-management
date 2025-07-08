@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { BookOpen, Phone, Shield, ArrowRight, ArrowLeft } from 'lucide-react';
@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from 'sonner';
 
-export default function StudentAuthPage() {
+function StudentAuthContent() {
   const [step, setStep] = useState<'phone' | 'otp'>('phone');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -243,7 +243,7 @@ export default function StudentAuthPage() {
 
               <div className="mt-4 text-center">
                 <Button variant="link" onClick={handleResendOtp} className="text-sm">
-                  Didn't receive OTP? Resend
+                  Didn&apos;t receive OTP? Resend
                 </Button>
               </div>
 
@@ -262,5 +262,13 @@ export default function StudentAuthPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function StudentAuthPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center"><div className="h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div></div>}>
+      <StudentAuthContent />
+    </Suspense>
   );
 }

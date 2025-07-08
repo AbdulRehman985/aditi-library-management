@@ -132,7 +132,7 @@ export default function StudentAdmissionPage() {
     },
   ];
 
-  console.log(formData.shift);
+  // Form data shift selected
 
   const durationOptions = [
     { value: 'monthly', label: 'Monthly', discount: 0 },

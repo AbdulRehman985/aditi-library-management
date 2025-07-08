@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
-import { useAppStore } from '@/utils/store';
+
 
 interface LayoutProps {
   children: React.ReactNode;

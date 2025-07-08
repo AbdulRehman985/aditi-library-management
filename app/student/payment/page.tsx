@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -17,7 +17,6 @@ import {
   Banknote,
   Shield,
   Clock,
-  AlertCircle,
   Phone,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -32,18 +31,18 @@ import { toast } from 'sonner';
 interface PaymentMethod {
   id: string;
   name: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ className?: string }>;
   description: string;
   fees: number;
   processingTime: string;
 }
 
-export default function StudentPaymentPage() {
+function StudentPaymentContent() {
   const [step, setStep] = useState<'method' | 'details' | 'processing' | 'success'>('method');
   const [selectedMethod, setSelectedMethod] = useState('');
   const [amount, setAmount] = useState(0);
   const [isAdmission, setIsAdmission] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [receiptId, setReceiptId] = useState('');
 
   const router = useRouter();
@@ -397,7 +396,7 @@ export default function StudentPaymentPage() {
               <CardContent className="pt-12 pb-12">
                 <div className="mx-auto mb-6 h-16 w-16 animate-spin rounded-full border-b-2 border-blue-600"></div>
                 <h2 className="mb-2 text-xl font-semibold">Processing Payment</h2>
-                <p className="mb-4 text-gray-600">Please don't close this page or go back</p>
+                <p className="mb-4 text-gray-600">Please don&apos;t close this page or go back</p>
                 <div className="space-y-2 text-sm text-gray-500">
                   <p>• Verifying payment details...</p>
                   <p>• Communicating with bank...</p>
@@ -463,8 +462,8 @@ export default function StudentPaymentPage() {
                     <div className="text-left">
                       <h4 className="font-medium text-blue-900">Auto Reminders Activated</h4>
                       <p className="mt-1 text-sm text-blue-700">
-                        You'll receive SMS and WhatsApp reminders before your next payment due date.
-                        Manage notification preferences in your profile settings.
+                        You&apos;ll receive SMS and WhatsApp reminders before your next payment due
+                        date. Manage notification preferences in your profile settings.
                       </p>
                     </div>
                   </div>
@@ -475,5 +474,19 @@ export default function StudentPaymentPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function StudentPaymentPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
+        </div>
+      }
+    >
+      <StudentPaymentContent />
+    </Suspense>
   );
 }

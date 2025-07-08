@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, Download, Eye, Filter, Calendar } from 'lucide-react';
+import { Search, Download, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -34,16 +34,17 @@ export default function PaymentHistory({ payments }: PaymentHistoryProps) {
 
   // Filter payments
   const filteredPayments = payments.filter((payment) => {
-    const matchesSearch = payment.studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         payment.receiptNo.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch =
+      payment.studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      payment.receiptNo.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesMethod = methodFilter === 'all' || payment.method === methodFilter;
     const matchesStatus = statusFilter === 'all' || payment.status === statusFilter;
-    
+
     let matchesDate = true;
     if (dateFilter !== 'all') {
       const paymentDate = new Date(payment.date);
       const now = new Date();
-      
+
       switch (dateFilter) {
         case 'today':
           matchesDate = paymentDate.toDateString() === now.toDateString();
@@ -58,16 +59,24 @@ export default function PaymentHistory({ payments }: PaymentHistoryProps) {
           break;
       }
     }
-    
+
     return matchesSearch && matchesMethod && matchesStatus && matchesDate;
   });
 
   const getStatusBadge = (status: Payment['status']) => {
     switch (status) {
       case 'Completed':
-        return <Badge variant="default" className="bg-green-100 text-green-800">Completed</Badge>;
+        return (
+          <Badge variant="default" className="bg-green-100 text-green-800">
+            Completed
+          </Badge>
+        );
       case 'Pending':
-        return <Badge variant="secondary" className="bg-amber-100 text-amber-800">Pending</Badge>;
+        return (
+          <Badge variant="secondary" className="bg-amber-100 text-amber-800">
+            Pending
+          </Badge>
+        );
       case 'Failed':
         return <Badge variant="destructive">Failed</Badge>;
       default:
@@ -77,12 +86,12 @@ export default function PaymentHistory({ payments }: PaymentHistoryProps) {
 
   const getMethodBadge = (method: Payment['method']) => {
     const colors = {
-      'Cash': 'bg-gray-100 text-gray-800',
-      'Card': 'bg-blue-100 text-blue-800',
-      'UPI': 'bg-purple-100 text-purple-800',
+      Cash: 'bg-gray-100 text-gray-800',
+      Card: 'bg-blue-100 text-blue-800',
+      UPI: 'bg-purple-100 text-purple-800',
       'Bank Transfer': 'bg-green-100 text-green-800',
     };
-    
+
     return (
       <Badge variant="outline" className={colors[method]}>
         {method}
@@ -93,9 +102,9 @@ export default function PaymentHistory({ payments }: PaymentHistoryProps) {
   return (
     <div className="space-y-4">
       {/* Filters */}
-      <div className="flex flex-col lg:flex-row gap-4">
+      <div className="flex flex-col gap-4 lg:flex-row">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
           <Input
             placeholder="Search by student name or receipt number..."
             value={searchTerm}
@@ -140,7 +149,7 @@ export default function PaymentHistory({ payments }: PaymentHistoryProps) {
       </div>
 
       {/* Table */}
-      <div className="border rounded-lg overflow-hidden">
+      <div className="overflow-hidden rounded-lg border">
         <Table>
           <TableHeader>
             <TableRow>
@@ -157,7 +166,7 @@ export default function PaymentHistory({ payments }: PaymentHistoryProps) {
           <TableBody>
             {filteredPayments.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={8} className="text-center py-8 text-gray-500">
+                <TableCell colSpan={8} className="py-8 text-center text-gray-500">
                   No payments found matching your criteria.
                 </TableCell>
               </TableRow>
@@ -176,7 +185,9 @@ export default function PaymentHistory({ payments }: PaymentHistoryProps) {
                       <p className="text-sm text-gray-500">ID: {payment.studentId}</p>
                     </div>
                   </TableCell>
-                  <TableCell className="font-semibold">₹{payment.amount.toLocaleString()}</TableCell>
+                  <TableCell className="font-semibold">
+                    ₹{payment.amount.toLocaleString()}
+                  </TableCell>
                   <TableCell>{getMethodBadge(payment.method)}</TableCell>
                   <TableCell>
                     <Badge variant="outline" className="bg-blue-50 text-blue-700">
@@ -187,7 +198,7 @@ export default function PaymentHistory({ payments }: PaymentHistoryProps) {
                     {new Date(payment.date).toLocaleDateString('en-IN', {
                       year: 'numeric',
                       month: 'short',
-                      day: 'numeric'
+                      day: 'numeric',
                     })}
                   </TableCell>
                   <TableCell>{getStatusBadge(payment.status)}</TableCell>
@@ -209,16 +220,17 @@ export default function PaymentHistory({ payments }: PaymentHistoryProps) {
       </div>
 
       {/* Summary */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm text-gray-500 border-t pt-4">
+      <div className="flex flex-col gap-4 border-t pt-4 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
         <span>
           Showing {filteredPayments.length} of {payments.length} payments
         </span>
         <div className="flex items-center space-x-4">
           <span>
-            Total Amount: ₹{filteredPayments.reduce((sum, payment) => sum + payment.amount, 0).toLocaleString()}
+            Total Amount: ₹
+            {filteredPayments.reduce((sum, payment) => sum + payment.amount, 0).toLocaleString()}
           </span>
         </div>
       </div>
     </div>
   );
-} 
+}

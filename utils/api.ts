@@ -4,6 +4,9 @@ import {
   mockNotifications,
   mockStats,
   enrollmentAnalytics,
+  Student,
+  Payment,
+  Notification,
 } from './mockData';
 
 // Simulate network delay

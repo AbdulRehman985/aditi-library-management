@@ -20,8 +20,8 @@ export default function StudentsPage() {
       try {
         const data = await api.getStudents();
         setStudents(data);
-      } catch (error) {
-        console.error('Failed to load students:', error);
+      } catch {
+        // Failed to load students
       } finally {
         setLoading('students', false);
       }
@@ -34,24 +34,22 @@ export default function StudentsPage() {
     try {
       await api.updateStudentFeeStatus(studentId, status);
       // Update local state
-      setStudents(prev => 
-        prev.map(student => 
-          student.id === studentId 
-            ? { ...student, feeStatus: status }
-            : student
+      setStudents((prev) =>
+        prev.map((student) =>
+          student.id === studentId ? { ...student, feeStatus: status } : student
         )
       );
-    } catch (error) {
-      console.error('Failed to update fee status:', error);
+    } catch {
+      // Failed to update fee status
     }
   };
 
   // Calculate statistics
   const stats = {
     total: students.length,
-    paid: students.filter(s => s.feeStatus === 'Paid').length,
-    due: students.filter(s => s.feeStatus === 'Due').length,
-    overdue: students.filter(s => s.feeStatus === 'Overdue').length,
+    paid: students.filter((s) => s.feeStatus === 'Paid').length,
+    due: students.filter((s) => s.feeStatus === 'Due').length,
+    overdue: students.filter((s) => s.feeStatus === 'Overdue').length,
   };
 
   const summaryCards = [
@@ -91,14 +89,12 @@ export default function StudentsPage() {
 
   return (
     <Layout>
-      <div className="p-6 space-y-6">
+      <div className="space-y-6 p-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+        <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Students</h1>
-            <p className="text-gray-600">
-              Manage student registrations and fee status
-            </p>
+            <p className="text-gray-600">Manage student registrations and fee status</p>
           </div>
           <div className="flex space-x-3">
             <Button variant="outline">
@@ -115,15 +111,15 @@ export default function StudentsPage() {
         {/* Summary Cards */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {summaryCards.map((card, index) => (
-            <Card key={index} className="shadow-sm hover:shadow-md transition-shadow">
+            <Card key={index} className="shadow-sm transition-shadow hover:shadow-md">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-600">{card.title}</p>
                     <p className="text-2xl font-bold text-gray-900">{card.value}</p>
-                    <p className="text-xs text-gray-500 mt-1">{card.description}</p>
+                    <p className="mt-1 text-xs text-gray-500">{card.description}</p>
                   </div>
-                  <div className={`p-3 rounded-full ${card.bgColor}`}>
+                  <div className={`rounded-full p-3 ${card.bgColor}`}>
                     <card.icon className={`h-6 w-6 ${card.color}`} />
                   </div>
                 </div>
@@ -143,18 +139,15 @@ export default function StudentsPage() {
           <CardContent>
             {loading.students ? (
               <div className="flex items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
                 <span className="ml-2 text-gray-600">Loading students...</span>
               </div>
             ) : (
-              <StudentTable 
-                students={students} 
-                onUpdateFeeStatus={handleUpdateFeeStatus}
-              />
+              <StudentTable students={students} onUpdateFeeStatus={handleUpdateFeeStatus} />
             )}
           </CardContent>
         </Card>
       </div>
     </Layout>
   );
-} 
+}

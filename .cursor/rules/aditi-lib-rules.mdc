@@ -1,0 +1,133 @@
+<cursorRules>
+  <project name="Library Management System MVP" type="Next.js" version="1.0">
+    
+    <objective>
+      Build a vibe-coded MVP for the library app using Next.js, TailwindCSS, and shadcn/ui to give the client a feel of the flow before full development.
+    </objective>
+
+    <techStack>
+      <frontend>Next.js 14 (App Router)</frontend>
+      <styling>TailwindCSS 3 + shadcn/ui (Radix + Tailwind variants)</styling>
+      <stateManagement>Zustand (for mock state)</stateManagement>
+      <auth>Mock with Clerk/Firebase UI (no real OTP)</auth>
+      <mockData>JSON files in /utils/mockData.ts</mockData>
+      <hosting>Vercel (for quick client demo)</hosting>
+      <iconLibrary>Lucide Icons</iconLibrary>
+      <animations>Framer Motion (optional for transitions)</animations>
+      <linting>ESLint (Next.js + Tailwind plugins)</linting>
+      <formatting>Prettier (with Tailwind plugin)</formatting>
+      <typescript>Strict Mode enabled</typescript>
+    </techStack>
+
+    <directoryStructure>
+      <root>
+        <pages>
+          <page>/login</page>
+          <page>/admission</page>
+          <page>/payment</page>
+          <page>/dashboard</page>
+          <page>/students</page>
+          <page>/notifications</page>
+          <page>/receipt</page>
+        </pages>
+        <components>
+          <component>Header.tsx</component>
+          <component>Footer.tsx</component>
+          <component>StudentTable.tsx</component>
+          <component>NotificationList.tsx</component>
+          <component>ReceiptCard.tsx</component>
+        </components>
+        <utils>
+          <file>mockData.ts</file>
+        </utils>
+        <styles>
+          <file>globals.css</file>
+          <file>tailwind.config.ts</file>
+        </styles>
+        <public>
+          <asset>logo.png</asset>
+          <asset>favicon.ico</asset>
+        </public>
+      </root>
+    </directoryStructure>
+
+    <buildRules>
+      <rule>Prioritize clickable flow over actual functionality.</rule>
+      <rule>All API calls are mocked using setTimeout to simulate network latency.</rule>
+      <rule>Use Zustand for holding temporary session/user state.</rule>
+      <rule>Responsive design: mobile-first, scaling up to desktop.</rule>
+      <rule>Keep forms minimal (only required fields for admission/payment).</rule>
+      <rule>Navigation should have a sticky header with logo + user info dropdown.</rule>
+      <rule>Color palette: Premium (Deep Blue, White, Accent Gold).</rule>
+      <rule>Typography: Sans-serif (Inter or system default).</rule>
+    </buildRules>
+
+    <linting>
+      <ruleset>Next.js Recommended</ruleset>
+      <plugin>eslint-plugin-tailwindcss</plugin>
+      <plugin>eslint-config-prettier</plugin>
+      <customRule>
+        <name>no-console</name>
+        <severity>warning</severity>
+      </customRule>
+      <customRule>
+        <name>react-hooks/exhaustive-deps</name>
+        <severity>error</severity>
+      </customRule>
+    </linting>
+
+    <formatting>
+      <tool>Prettier</tool>
+      <plugins>
+        <plugin>prettier-plugin-tailwindcss</plugin>
+      </plugins>
+      <settings>
+        <tabWidth>2</tabWidth>
+        <semi>true</semi>
+        <singleQuote>true</singleQuote>
+        <trailingComma>es5</trailingComma>
+        <printWidth>100</printWidth>
+      </settings>
+    </formatting>
+
+    <deployment>
+      <platform>Vercel</platform>
+      <vercelConfig>
+        <framework>Next.js</framework>
+        <buildCommand>next build</buildCommand>
+        <outputDirectory>.next</outputDirectory>
+        <nodeVersion>20.x</nodeVersion>
+      </vercelConfig>
+      <customDomain>Optional (client's domain if provided)</customDomain>
+    </deployment>
+
+    <testing>
+      <method>Manual Testing</method>
+      <devices>Desktop, Tablet, Mobile</devices>
+      <scenarios>
+        <scenario>Login → Admission → Dashboard → Payment</scenario>
+        <scenario>Admin manually edits student fee status in /students page</scenario>
+        <scenario>Notifications render correctly with mock data</scenario>
+      </scenarios>
+    </testing>
+
+    <timeEstimate>
+      <total>3 hours</total>
+      <breakdown>
+        <step>Project Scaffold & Config (20 min)</step>
+        <step>Auth + Admission Flow (40 min)</step>
+        <step>Dashboard + Tables (40 min)</step>
+        <step>Payment & Receipt (30 min)</step>
+        <step>Styling + Polish (30 min)</step>
+        <step>Vercel Deploy (10 min)</step>
+      </breakdown>
+    </timeEstimate>
+
+  </project>
+</cursorRules>
+
+---
+description:
+globs:
+
+---

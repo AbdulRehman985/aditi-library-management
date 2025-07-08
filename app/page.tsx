@@ -1,102 +1,226 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { BookOpen, Users, CreditCard, Bell, ArrowRight, CheckCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useAppStore } from '@/utils/store';
+
+export default function LandingPage() {
+  const router = useRouter();
+  const { isAuthenticated } = useAppStore();
+
+  useEffect(() => {
+    // Redirect authenticated users to dashboard
+    if (isAuthenticated) {
+      router.push('/dashboard');
+    }
+  }, [isAuthenticated, router]);
+
+  const features = [
+    {
+      icon: Users,
+      title: 'Student Management',
+      description:
+        'Comprehensive student registration and profile management with shift scheduling.',
+    },
+    {
+      icon: CreditCard,
+      title: 'Payment Tracking',
+      description: 'Automated fee collection, receipt generation, and payment history tracking.',
+    },
+    {
+      icon: Bell,
+      title: 'Smart Notifications',
+      description: 'Automated reminders for due payments, announcements, and system updates.',
+    },
+    {
+      icon: BookOpen,
+      title: 'Modern Interface',
+      description: 'Premium UI/UX design with mobile-first responsive layout for all devices.',
+    },
+  ];
+
+  const benefits = [
+    'Real-time dashboard with key metrics',
+    'Automated fee tracking and reminders',
+    'Mobile-responsive design',
+    'Secure data management',
+    'Easy student onboarding',
+    'Comprehensive reporting',
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
+      {/* Header */}
+      <header className="safe-area-top border-b bg-white/80 backdrop-blur-sm">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center space-x-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+              <BookOpen className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-xl font-bold text-gray-900 sm:text-2xl">Aditi Library</span>
+          </div>
+          <Button asChild>
+            <Link href="/login">
+              Sign In
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      {/* Hero Section */}
+      <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="container mx-auto text-center">
+          <div className="mx-auto max-w-4xl">
+            <h1 className="text-mobile-3xl font-bold text-gray-900 sm:text-4xl lg:text-6xl">
+              Modern Library Management
+              <span className="block text-blue-600">Made Simple</span>
+            </h1>
+            <p className="text-mobile-lg mx-auto mt-6 max-w-2xl text-gray-600 sm:text-xl">
+              Streamline your library operations with our comprehensive management system. Track
+              students, manage payments, and send notifications with ease.
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button size="lg" asChild className="w-full sm:w-auto">
+                <Link href="/login">
+                  Staff Login
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
+                <Link href="/student/auth">Student Login</Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
+                <Link href="/student/signup">Join as Student</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="container mx-auto">
+          <div className="text-center">
+            <h2 className="text-mobile-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
+              Everything You Need
+            </h2>
+            <p className="text-mobile-base mt-4 text-gray-600 sm:text-lg">
+              Powerful features designed for modern library management
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {features.map((feature, index) => (
+              <Card key={index} className="shadow-sm transition-shadow hover:shadow-md">
+                <CardHeader className="pb-4">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
+                    <feature.icon className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-mobile-lg sm:text-xl">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-mobile-sm sm:text-base">
+                    {feature.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="bg-gray-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="container mx-auto">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div>
+              <h2 className="text-mobile-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
+                Why Choose Aditi Library?
+              </h2>
+              <p className="text-mobile-base mt-4 text-gray-600 sm:text-lg">
+                Built with modern technology and designed for efficiency, our system helps you
+                manage your library with confidence and ease.
+              </p>
+              <ul className="mt-8 space-y-4">
+                {benefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start">
+                    <CheckCircle className="mt-0.5 mr-3 h-5 w-5 flex-shrink-0 text-green-500" />
+                    <span className="text-mobile-base text-gray-700 sm:text-base">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative">
+              <Card className="shadow-xl">
+                <CardHeader>
+                  <CardTitle>Demo Account</CardTitle>
+                  <CardDescription>Try the system with sample data</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Email:</span>
+                      <span className="font-medium">admin@aditilibrary.com</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Password:</span>
+                      <span className="font-medium">admin123</span>
+                    </div>
+                  </div>
+                  <Button className="mt-4 w-full" asChild>
+                    <Link href="/login">Try Demo</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="container mx-auto text-center">
+          <h2 className="text-mobile-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
+            Ready to Get Started?
+          </h2>
+          <p className="text-mobile-base mt-4 text-gray-600 sm:text-lg">
+            Join hundreds of libraries already using our management system.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button size="lg" asChild className="w-full sm:w-auto">
+              <Link href="/login">
+                Staff Dashboard
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
+              <Link href="/student/auth">Student Login</Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-auto">
+              <Link href="/student/signup">Student Signup</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="safe-area-bottom border-t bg-white px-4 py-8 sm:px-6 lg:px-8">
+        <div className="container mx-auto text-center">
+          <div className="flex items-center justify-center space-x-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
+              <BookOpen className="h-5 w-5 text-white" />
+            </div>
+            <span className="text-lg font-bold text-gray-900">Aditi Library</span>
+          </div>
+          <p className="text-mobile-sm mt-4 text-gray-600 sm:text-sm">
+            © 2025 Aditi Library Management System. 
+          </p>
+        </div>
       </footer>
     </div>
   );

@@ -106,7 +106,7 @@ The system provides the following major functions:
 **Priority**: High
 **Functional Requirements**:
 - **FR-PW-007**: System shall integrate news API for daily updates
-- **FR-PW-008**: System shall display news from Hindustan, Prabhat Khabar, Dainik Jagran, Times of India
+- **FR-PW-008**: System shall display news from Hindustan, The Hindu, Dainik Jagran, Times of India
 - **FR-PW-009**: System shall automatically update news content daily
 - **FR-PW-010**: System shall provide dedicated News page
 - **FR-PW-011**: System shall cache news content for performance

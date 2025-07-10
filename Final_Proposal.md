@@ -35,7 +35,7 @@ Best for essential features with minimal complexity.
   - Approve cash payments
   - Basic dashboards (enrolled/active students, revenue, dues)
 - **Notifications:**
-  - SMS reminders 3 days before & after due date (with payment link)
+  - SMS reminders 2 days before & after due date (with payment link)
 - **Renewals & Readmissions:**
   - Auto-renewal via mobile/Aadhaar
 - **Locker Management:**

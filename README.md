@@ -1,3 +1,11 @@
+# 📌 Project Status: Deal Not Closed
+
+🚫 **Deal not finalized** – The client requested a fully custom solution within a ₹12,000 budget, which was not feasible due to actual development, domain, and hosting costs.
+
+📂 The SRS and proposal have been retained here for reference in case of future similar projects.
+
+---
+
 # Aditi Library Management System
 
 A modern, premium library management system built with Next.js 14, designed for mobile-first responsive use and premium user experience.

@@ -1,14 +1,19 @@
 # Aditi Library Management System
 
-A modern, premium library management system built with Next.js 14 and designed with mobile-first responsive principles.
+A modern, premium library management system built with Next.js 14, designed for mobile-first responsive use and premium user experience.
 
-## 🎯 Features
+## 🎯 Key Features
 
-- **Student Management**: Comprehensive registration and profile management
-- **Payment Tracking**: Automated fee collection and receipt generation
-- **Smart Notifications**: Real-time alerts and announcements
-- **Mobile-First Design**: Responsive UI optimized for all devices
-- **Premium UI/UX**: Modern design with shadcn/ui components
+- **Student Management**: Registration, profile management, shift scheduling, fee status tracking, and locker assignment.
+- **Admission Module**: Multi-step admission form with shift and duration selection, Aadhaar validation, and real-time seat availability.
+- **Payment Tracking**: Automated fee collection, digital payment methods (UPI, Card, Net Banking, Wallet), receipt generation, and payment history.
+- **Smart Notifications**: Real-time alerts for due/overdue payments, system announcements, and reminders.
+- **Dashboard & Analytics**: Real-time dashboard with key metrics (students, revenue, enrollments, departures, retention), summary cards, and quick actions.
+- **Student Portal**: Student authentication (phone/OTP), profile view, payment history, enrollment status, and 24/7 access options.
+- **Admin/Staff Portal**: Staff login, student management, payment recording, notification sending, and analytics access.
+- **Mobile-First Design**: Responsive UI, touch-friendly controls, collapsible sidebar, and mobile drawer navigation.
+- **Premium UI/UX**: Modern design using shadcn/ui, consistent theming, and smooth transitions.
+- **Security**: Secure data handling, session management, and demo authentication.
 
 ## 🚀 Tech Stack
 
@@ -127,15 +132,18 @@ The application uses shadcn/ui components for a consistent, premium design:
 - **Badges**: Status indicators
 - **Modals**: Dialog and sheet overlays
 
-## 📊 Pages Overview
+## 📊 Pages & Modules Overview
 
-1. **Landing Page**: Welcome page with features overview
-2. **Login**: Authentication with demo credentials
-3. **Dashboard**: Overview with key metrics and charts
-4. **Students**: Student management with search and filters
-5. **Payments**: Payment history and transaction tracking
-6. **Notifications**: System announcements and alerts
-7. **Admission**: New student registration form
+1. **Landing Page**: Welcome, feature highlights, and quick access links.
+2. **Login**: Staff and student authentication (email/password, phone/OTP).
+3. **Dashboard**: Key metrics, summary cards, recent payments, overdue students, and quick actions.
+4. **Students**: List, search, filter, add, and manage students; update fee status; export data.
+5. **Payments**: Record, track, and view payment history; digital payment options; receipt generation.
+6. **Notifications**: Send and view system announcements, payment reminders, and alerts.
+7. **Admission**: Multi-step student admission form with shift/duration selection and validation.
+8. **Analytics**: Enrollment trends, revenue, and retention analytics (for staff/admin).
+9. **Student Portal**: Profile, payment history, enrollment status, and logout.
+10. **Signup**: Student registration with phone verification and onboarding.
 
 ## 🔄 State Management
 

@@ -1,5 +1,5 @@
 # 📄 Final Proposal (Approved SRS)
-## Aditi Library Management System (Aditi Library & Study Hub)
+## ITMS Library Management System (ITMS Library & Study Hub)
 ### Version 2.0 | Client Approved Requirements
 
 This proposal includes all features discussed and approved in the Software Requirement Specification (SRS).  
@@ -276,4 +276,4 @@ Before project start, client must provide:
 
 ---
 
-*This proposal serves as the complete agreement between the client and development team for the Aditi Library Management System project.* 
+*This proposal serves as the complete agreement between the client and development team for the ITMS Library Management System project.* 

@@ -174,7 +174,7 @@ export default function StudentSignupPage() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
               <BookOpen className="h-5 w-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">Aditi Library</span>
+            <span className="text-xl font-bold text-gray-900">ITMS Library</span>
           </Link>
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-600">Already registered?</span>
@@ -194,7 +194,7 @@ export default function StudentSignupPage() {
             </div>
           </div>
           <h1 className="mb-2 text-3xl font-bold text-gray-900">Create Student Account</h1>
-          <p className="text-gray-600">Join Aditi Library and start your learning journey</p>
+          <p className="text-gray-600">Join ITMS Library and start your learning journey</p>
         </div>
 
         {/* Signup Form */}
@@ -468,7 +468,7 @@ export default function StudentSignupPage() {
         {/* Benefits Section */}
         <Card className="mt-8 border-blue-200 bg-blue-50">
           <CardHeader>
-            <CardTitle className="text-blue-900">Why Join Aditi Library?</CardTitle>
+            <CardTitle className="text-blue-900">Why Join ITMS Library?</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

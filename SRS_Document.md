@@ -1,5 +1,5 @@
 # Software Requirements Specification (SRS)
-## Aditi Library Management System
+## ITMS Library Management System
 ### Version 2.0 | 9 July 2025 - Client Approved Requirements
 
 ---
@@ -25,10 +25,10 @@
 ## 1. Introduction
 
 ### 1.1 Purpose
-This Software Requirements Specification (SRS) document describes the functional and non-functional requirements for the Aditi Library Management System based on client requirements finalized in the second consultation call. This document serves as the final written agreement between the client and the development team regarding the features, functionality, and scope of the system.
+This Software Requirements Specification (SRS) document describes the functional and non-functional requirements for the ITMS Library Management System based on client requirements finalized in the second consultation call. This document serves as the final written agreement between the client and the development team regarding the features, functionality, and scope of the system.
 
 ### 1.2 Product Overview
-Aditi Library Management System is a modern, mobile-first web application with a public-facing website and comprehensive library management capabilities. The system includes phone-based authentication, online admissions with payment processing, automated SMS notifications, discount management, and integrated news feeds for daily newspaper content.
+ITMS Library Management System is a modern, mobile-first SaaS (multi-tenant) web application with a public-facing website and comprehensive library management capabilities. The system includes phone-based authentication, online admissions with payment processing, automated SMS notifications, discount management, and integrated news feeds for daily newspaper content.
 
 ### 1.3 Intended Audience
 - **Primary**: Library administrators and staff
@@ -43,7 +43,7 @@ This SRS covers all functional requirements, non-functional requirements, system
 ## 2. Overall Description
 
 ### 2.1 Product Perspective
-The Aditi Library Management System is a standalone web application that will replace existing manual processes for library management. The system is designed to be:
+The ITMS Library Management System is a SaaS (multi-tenant) web application that will replace existing manual processes for library management. The system is designed to be:
 - **Web-based**: Accessible through modern web browsers
 - **Mobile-responsive**: Optimized for smartphones, tablets, and desktop devices
 - **Cloud-ready**: Deployable on modern cloud platforms
@@ -619,7 +619,7 @@ The system provides the following major functions:
 ## 13. Approval and Sign-off
 
 ### 13.1 Client Approval
-This SRS document represents the complete and final agreement between the client and the development team regarding the features, functionality, and scope of the Aditi Library Management System.
+This SRS document represents the complete and final agreement between the client and the development team regarding the features, functionality, and scope of the ITMS Library Management System.
 
 **Client Representative:**
 - Name: Abhishek Singh Kushwaha
@@ -678,4 +678,4 @@ The system will be considered complete and acceptable when:
 
 ---
 
-*This SRS document serves as the authoritative source for all development activities and client expectations for the Aditi Library Management System project.* 
+*This SRS document serves as the authoritative source for all development activities and client expectations for the ITMS Library Management System project.* 

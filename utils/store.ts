@@ -68,7 +68,7 @@ export const useAppStore = create<AppState>()(
       setUnreadNotifications: (count) => set({ unreadNotifications: count }),
     }),
     {
-      name: 'aditi-library-storage',
+      name: 'itms-library-storage',
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,

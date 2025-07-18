@@ -61,7 +61,7 @@ export default function LandingPage() {
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
               <BookOpen className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900 sm:text-2xl">Aditi Library</span>
+            <span className="text-xl font-bold text-gray-900 sm:text-2xl">ITMS Library</span>
           </div>
           <Button asChild>
             <Link href="/login">
@@ -140,7 +140,7 @@ export default function LandingPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
               <h2 className="text-mobile-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
-                Why Choose Aditi Library?
+                Why Choose ITMS Library?
               </h2>
               <p className="text-mobile-base mt-4 text-gray-600 sm:text-lg">
                 Built with modern technology and designed for efficiency, our system helps you
@@ -165,7 +165,7 @@ export default function LandingPage() {
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Email:</span>
-                      <span className="font-medium">admin@aditilibrary.com</span>
+                      <span className="font-medium">admin@itmslibrary.com</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Password:</span>
@@ -215,10 +215,10 @@ export default function LandingPage() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
               <BookOpen className="h-5 w-5 text-white" />
             </div>
-            <span className="text-lg font-bold text-gray-900">Aditi Library</span>
+            <span className="text-lg font-bold text-gray-900">ITMS Library</span>
           </div>
           <p className="text-mobile-sm mt-4 text-gray-600 sm:text-sm">
-            © 2025 Aditi Library Management System. 
+            © 2025 ITMS Library Management System. 
           </p>
         </div>
       </footer>

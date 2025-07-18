@@ -148,7 +148,7 @@ export default function AdmissionPage() {
                 </div>
                 <h1 className="mb-4 text-2xl font-bold text-gray-900">Admission Successful!</h1>
                 <p className="mb-6 text-gray-600">
-                  Welcome to Aditi Library! Your admission has been processed successfully.
+                  Welcome to ITMS Library! Your admission has been processed successfully.
                 </p>
 
                 <div className="mb-6 rounded-lg bg-gray-50 p-6 text-left">

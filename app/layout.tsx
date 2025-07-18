@@ -9,17 +9,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Aditi Library - Modern Library Management System',
+  title: 'ITMS Library - Modern Library Management System',
   description:
     'Comprehensive library management system for students and staff with premium UI/UX design.',
   keywords: ['library', 'management', 'students', 'education', 'Next.js'],
-  authors: [{ name: 'Aditi Library Team' }],
+  authors: [{ name: 'ITMS Library Team' }],
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: 'Aditi Library - Modern Library Management System',
+    title: 'ITMS Library - Modern Library Management System',
     description: 'Comprehensive library management system for students and staff',
     type: 'website',
   },

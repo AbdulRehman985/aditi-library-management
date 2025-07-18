@@ -6,9 +6,9 @@
 
 ---
 
-# Aditi Library Management System
+# ITMS Library Management System
 
-A modern, premium library management system built with Next.js 14, designed for mobile-first responsive use and premium user experience.
+A modern, premium SaaS (multi-tenant) library management system built with Next.js 14, designed for mobile-first responsive use and premium user experience.
 
 ## 🎯 Key Features
 
@@ -73,7 +73,7 @@ This application is built with mobile-first principles:
 
 ```bash
 git clone <repository-url>
-cd aditi_library
+cd itms_library
 ```
 
 2. Install dependencies:
@@ -102,13 +102,13 @@ pnpm dev
 
 For testing the application, use these demo credentials:
 
-- **Email**: admin@aditilibrary.com
+- **Email**: admin@itmslibrary.com
 - **Password**: admin123
 
 ## 🗂️ Project Structure
 
 ```
-aditi_library/
+itms_library/
 ├── app/                    # Next.js 14 App Router
 │   ├── dashboard/         # Dashboard page
 │   ├── students/          # Student management

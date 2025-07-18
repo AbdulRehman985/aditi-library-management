@@ -15,7 +15,7 @@ export default function LoginPage() {
   const router = useRouter();
   const { login } = useAppStore();
   const [formData, setFormData] = useState({
-    email: 'admin@aditilibrary.com',
+    email: 'admin@itmslibrary.com',
     password: 'admin123',
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -60,7 +60,7 @@ export default function LoginPage() {
           </div>
           <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
           <CardDescription>
-            Sign in to your Aditi Library account
+            Sign in to your ITMS Library account
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -71,7 +71,7 @@ export default function LoginPage() {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="admin@aditilibrary.com"
+                placeholder="admin@itmslibrary.com"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -142,7 +142,7 @@ export default function LoginPage() {
 
             <div className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg">
               <p className="font-medium mb-2">For demo purposes:</p>
-              <p><strong>Email:</strong> admin@aditilibrary.com</p>
+              <p><strong>Email:</strong> admin@itmslibrary.com</p>
               <p><strong>Password:</strong> admin123</p>
             </div>
           </div>

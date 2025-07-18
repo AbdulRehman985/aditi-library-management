@@ -161,7 +161,7 @@ export default function DashboardPage() {
             <h1 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-4xl font-bold text-transparent">
               Welcome back, {user?.name}!
             </h1>
-            <p className="text-lg text-gray-600">Here&apos;s what&apos;s happening at Aditi Library today.</p>
+            <p className="text-lg text-gray-600">Here&apos;s what&apos;s happening at ITMS Library today.</p>
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <Calendar className="h-4 w-4" />
               {new Date().toLocaleDateString('en-US', {

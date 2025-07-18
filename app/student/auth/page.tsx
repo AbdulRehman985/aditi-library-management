@@ -96,7 +96,7 @@ function StudentAuthContent() {
               })
             );
             localStorage.removeItem('studentRegistration'); // Clean up temp data
-            toast.success('Account verified successfully! Welcome to Aditi Library!');
+            toast.success('Account verified successfully! Welcome to ITMS Library!');
             router.push('/student/admission'); // Direct to admission for new users
           }
         } else {
@@ -133,7 +133,7 @@ function StudentAuthContent() {
               <BookOpen className="h-7 w-7 text-white" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Aditi Library</h1>
+          <h1 className="text-2xl font-bold text-gray-900">ITMS Library</h1>
           <p className="mt-2 text-gray-600">Student Portal</p>
         </div>
 
@@ -185,7 +185,7 @@ function StudentAuthContent() {
               {!isSignup && (
                 <div className="mt-4 text-center">
                   <p className="text-sm text-gray-600">
-                    New to Aditi Library?{' '}
+                    New to ITMS Library?{' '}
                     <Link
                       href="/student/signup"
                       className="font-medium text-blue-600 hover:underline"

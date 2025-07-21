@@ -92,7 +92,7 @@ The system provides the following major functions:
 
 #### 3.1.1 Homepage
 **Description**: Public-facing landing page with library information
-**Priority**: High
+**Priority**: Medium
 **Functional Requirements**:
 - **FR-PW-001**: System shall display an image slider on homepage
 - **FR-PW-002**: System shall show team member photos and profiles
@@ -103,7 +103,7 @@ The system provides the following major functions:
 
 #### 3.1.2 News Integration
 **Description**: Daily newspaper content integration
-**Priority**: High
+**Priority**: Low
 **Functional Requirements**:
 - **FR-PW-007**: System shall integrate news API for daily updates
 - **FR-PW-008**: System shall display news from Hindustan, The Hindu, Dainik Jagran, Times of India
@@ -170,7 +170,7 @@ The system provides the following major functions:
 **Functional Requirements**:
 - **FR-SM-010**: System shall support fixed batch schedules (Morning, Day, Evening)
 - **FR-SM-011**: System shall track batch capacity and current enrollment
-- **FR-SM-012**: System shall prevent overbooking of batches
+- **FR-SM-012**: System shall prevent overbooking of batches upto a limit of 10% of the total capacity
 - **FR-SM-013**: System shall generate batch-wise reports
 
 ### 3.4 Admission Module

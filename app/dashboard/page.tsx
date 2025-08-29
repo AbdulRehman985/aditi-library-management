@@ -27,7 +27,7 @@ import Layout from '@/components/Layout';
 import { useAppStore } from '@/utils/store';
 import { api } from '@/utils/api';
 import { mockStats, mockStudents, mockPayments } from '@/utils/mockData';
-
+import { useRouter } from 'next/navigation';
 interface DashboardStats {
   totalStudents: number;
   paidStudents: number;
@@ -48,8 +48,14 @@ export default function DashboardPage() {
   const [overdueStudents] = useState(
     mockStudents.filter((s) => s.feeStatus === 'Overdue').slice(0, 3)
   );
+  const Router = useRouter();
 
   useEffect(() => {
+    if (!user) {
+      //if User is not loggedIn redirect to login page
+      Router.push('/login');
+      return;
+    }
     const loadDashboardData = async () => {
       setLoading('dashboard', true);
       try {
@@ -63,7 +69,7 @@ export default function DashboardPage() {
     };
 
     loadDashboardData();
-  }, [setLoading]);
+  }, [setLoading, user, Router]);
 
   const summaryCards = [
     {
@@ -161,7 +167,9 @@ export default function DashboardPage() {
             <h1 className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-4xl font-bold text-transparent">
               Welcome back, {user?.name}!
             </h1>
-            <p className="text-lg text-gray-600">Here&apos;s what&apos;s happening at ITMS Library today.</p>
+            <p className="text-lg text-gray-600">
+              Here&apos;s what&apos;s happening at ITMS Library today.
+            </p>
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <Calendar className="h-4 w-4" />
               {new Date().toLocaleDateString('en-US', {

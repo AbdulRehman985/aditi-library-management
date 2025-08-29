@@ -51,9 +51,12 @@ export default function DashboardPage() {
   const Router = useRouter();
 
   useEffect(() => {
-    if (!user) {
+    if (!user && user?.role === 'admin') {
       //if User is not loggedIn redirect to login page
       Router.push('/login');
+      return;
+    } else if (user?.role !== 'admin') {
+      Router.push('/'); // Logged in but not admin
       return;
     }
     const loadDashboardData = async () => {
